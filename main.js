@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			url: ajaxEdgesURL,
 			type: 'GET'
 		});
-//define by Franck
 
 	//Receive all data before populating Cytoscape graph
 	Promise.all([graphNodes, graphEdges]).then(initCy);
@@ -59,99 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				cy.elements().removeClass('faded');
 			}
 		});
-		//add bei Franck
-		function showNodeInfo( node ){
-			$('#info').html( infoTemplate( node.data() ) ).show();
-			}
 
-			function hideNodeInfo(){
-			$('#info').hide();
-			}
-        cy.on('select unselect', 'node', _.debounce( function(e){
-		var node = cy.$('node:selected');
-
-		if( node.nonempty() ){
-        showNodeInfo( node );
-
-        Promise.resolve().then(function(){
-          return highlight( node );
-        });
-			} else {
-        hideNodeInfo();
-        clear();
-		}
-
-			}, 100 ) );
-		cy.on('tap', function(){
-			$('#search').blur();
-			});
-		 $('#search').typeahead({
-			minLength: 2,
-			highlight: true,
-		},
-		{
-    name: 'search-dataset',
-    source: function( query, cb ){
-      function matches( str, q ){
-        str = (str || '').toLowerCase();
-        q = (q || '').toLowerCase();
-
-        return str.match( q );
-      }
-
-      var fields = ['name', 'NodeType', 'Country', 'Type', 'Milk'];
-
-      function anyFieldMatches( n ){
-        for( var i = 0; i < fields.length; i++ ){
-          var f = fields[i];
-
-          if( matches( n.data(f), query ) ){
-            return true;
-          }
-        }
-
-        return false;
-      }
-
-      function getData(n){
-        var data = n.data();
-
-        return data;
-      }
-
-      function sortByName(n1, n2){
-        if( n1.data('name') < n2.data('name') ){
-          return -1;
-        } else if( n1.data('name') > n2.data('name') ){
-          return 1;
-        }
-
-        return 0;
-		}
-
-		var res = allNodes.stdFilter( anyFieldMatches ).sort( sortByName ).map( getData );
-
-		cb( res );
-		},
-		templates: {
-		suggestion: infoTemplate
-		}
-		}).on('typeahead:selected', function(e, entry, dataset){
-		var n = cy.getElementById(entry.id);
-		cy.batch(function(){
-		allNodes.unselect();
-		n.select();
-		});
-		showNodeInfo( n );
-		}).on('keydown keypress keyup change', _.debounce(function(e){
-			var thisSearch = $('#search').val();
-
-			if( thisSearch !== lastSearch ){
-				$('.tt-dropdown-menu').scrollTop(0);
-
-				lastSearch = thisSearch;
-			}
-			}, 50));
 		//Add the Nodes to our Cytoscape interface
 		function getNodes() {
 
