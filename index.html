@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"></meta>
+    <title>PitssConCyDemo</title>
+    <link rel="stylesheet" href="css/libraries/jquery.qtip.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/libraries/bootstrap.css" rel="stylesheet"/>
+    <link href="css/libraries/bootstrap-theme.css"/>
+	
+    <script src="js/graphStyle.js"></script>
+	
+
+</head>
+<body>
+
+<nav id="navBar" class="navbar navbar-default my-nav-bar" role ="navigation">
+  <div id="info-content">
+    <table width="100%" height="100%" align="center" valign="center">
+        <tr>
+            <td>
+                <span class="input-file" id="file-name"></span>
+            </td>
+            <td>
+			 <a href="http://192.168.161.234:7001/html/" class="t-Header-logo-link">
+			    <div style="float:left">
+				<img src="images/pitss_small.gif">
+       </div>	
+		</a> <span class="label">PITSS.CON</span></td>
+        </tr>
+    </table>
+	<div>
+        <ul id="navlist" class="nav navbar-nav nav-text">
+            <li class="dropdown">
+                <a href="#" data-toggle="dropdown" class="dropdown-toggle">File <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a id="save-file" href="#">Save</a></li>
+                    <li class="divider"></li>
+                    <li>
+                        <a id="save-as-png" href="#">Save as PNG</a>
+                    </li>
+                </ul>
+            </li><li class="dropdown">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Edit <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a id="addNode" href="#">Add Node</a></li>
+            </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" data-toggle="dropdown" class="dropdown-toggle">Layout <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a id="Blafirst" href="#">Breadthfirst</a></li>
+                    <li><a id="concentric" href="#">Concentric</a></li>
+                    <li><a id="circle" href="#">Circle</a></li>
+                    <li><a id="dagre" href="#">Dagre</a></li>
+                    <li><a id="cola" href="#">Cola</a></li>
+                    <li><a id="random" href="#">Random</a></li>
+                </ul>
+            </li></ul>
+        
+    </div>
+</div>
+</nav>
+<div id="cy" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); position: relative; z-index: 0;
+    overflow: hidden; width: 100%; height: 100%; x=0; y =0;">
+</div>
+
+<!--<div id = "config" class = "config">Sliders-->
+<!--</div>-->
+
+<div id="loading">
+    <span class="fa fa-refresh fa-spin"></span>
+</div>
+<div id="search-wrapper" style="#search-wrapper">
+    <span class="twitter-typeahead" style="position: relative; display: inline-block; direction: ltr;">
+	<input type="text" class="form-control tt-hint" readonly="" autocomplete="off" spellcheck="false" tabindex="-1" style="position: absolute; top: 0px; left: 0px; border-color: transparent; box-shadow: none; opacity: 1; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(255, 255, 255);">
+	<input type="text" class="fa fa-search" id="searche" placeholder="&#xf002; Search" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; background-color: transparent;"><pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: fontawesome, &quot;helvetica neue&quot;, helvetica, &quot;liberation sans&quot;, &quot;nimbus sans&quot;, &quot;nimbus sans l&quot;, arial, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre><span class="tt-dropdown-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none; right: auto;"><div class="tt-dataset-search-dataset"></div></span></span>
+  </div>
+<!--<div id="functionButtons">
+    <input type="button" id="setPositionsButton" value="Save Positions"> <br>
+    <input type="button" id="exportPngButton" value="Export To Png"> <br>
+    <input type="button" id="resetButton" value="Reset"> <br>
+</div>
+
+<!-- VIEW SCRIPTS -->
+<li id="search">
+    <form action="/secure/QuickSearch.jspa" method="get" id="quicksearch" class="aui-quicksearch dont-default-focus ajs-dirty-warning-exempt">
+        <input id="quickSearchInput" class="search" type="text" title="Search ( Type '/' )" placeholder="Search" name="searchString" accesskey="q">
+        <input type="submit" class="hidden" value="Search">
+    </form>
+</li>
+<div id="info">
+  </div>
+
+<script src="js/libraries/jquery-2.2.4.js"></script>
+<script src="js/libraries/bootstrap.js"></script>
+<script src="js/libraries/jquery.qtip.min.js"></script>
+<script src="js/cytoscape/extensions/ui/jquery-ui.min.js"></script>
+
+<!-- CYTOSCAPE & EXTENSIONS -->
+<script src="js/main.js"></script>
+<script src="js/cytoscape/cytoscape.js"></script>
+<script src="js/cytoscape/extensions/ui/cytoscape-qtip.js"></script>
+<script src="js/libraries/dagre.js"></script>
+<script src="js/cytoscape/extensions/layout/cytoscape-dagre.js"></script>
+<script src="js/libraries/cola.js"></script>
+<script src="js/cytoscape/extensions/layout/cytoscape-cola.js"></script>
+<script src="js/libraries/jquery.qtip.min.js"></script>
+<script src="js/libraries/bootstrap-slider.js"></script>
+<script src="js/libraries/lodash.js"></script>
+<script src="js/libraries/fastclick.js"></script>
+<script src="js/alertify.js" type="text/javascript"></script>
+<link href="css/alertify.core.css" rel="stylesheet">
+<link href="css/alertify.default.css" rel="stylesheet">
+<button id="filter" class="btn btn-default" data-hasqtip="0" aria-describedby="qtip-0"><i class="fa fa-filter"></i></button>
+
+</body>
+</html>
+
